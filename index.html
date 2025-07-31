@@ -10,20 +10,83 @@
     <!-- Google Fonts for cute, handwritten feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <meta property="og:title" content="pastel-love-flutter" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <style>
+      .bpw-floating-hearts {
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .heart {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: url('https://em-content.zobj.net/source/animated-noto-color-emoji/356/sparkling-heart_1f496.gif') no-repeat center;
+        background-size: contain;
+        animation: floatHearts 5s ease-in-out infinite;
+      }
+
+      @keyframes floatHearts {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+      }
+    </style>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v3.1/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/07/30/19/20250730193336-6ESYE8SJ.js"></script>
+    <script>
+      window.botpressWebChat.init({
+        botId: "dbfe801e-01d8-495d-af9a-cb0b8092dd1b",
+        hostUrl: "https://cdn.botpress.cloud/webchat/v3.1",
+        containerWidth: "400px",
+        layoutWidth: "100%",
+        showCloseButton: true,
+        theme: {
+          backgroundColor: "#fbe7f0", // soft pink
+          headerBackgroundColor: "#ffc4d6",
+          headerTextColor: "#5a2c61",
+          botMessageBackgroundColor: "#fff0f5",
+          botMessageTextColor: "#4b1c47",
+          userMessageBackgroundColor: "#e1d7fc",
+          userMessageTextColor: "#4b1c47",
+          accentColor: "#ff90b3",
+          borderRadius: "18px",
+          fontFamily: "'Kalam', 'Comic Sans MS', cursive",
+          composerBackgroundColor: "#fff9fc",
+          sendButtonColor: "#ff90b3"
+        }
+      });
+
+      setTimeout(() => {
+        const container = document.querySelector("#bp-web-widget-container");
+        if (container) {
+          const heartLayer = document.createElement("div");
+          heartLayer.className = "bpw-floating-hearts";
+          for (let i = 0; i < 5; i++) {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            heartLayer.appendChild(heart);
+          }
+          container.appendChild(heartLayer);
+        }
+      }, 2000);
+
+    </script>
   </body>
 </html>
